@@ -8,7 +8,7 @@ import seaborn as sns
 import os
 
 def main():
-    st.header("📚 Ejercicio 2: Procesamiento del Dataset 'Student Performance'")
+    st.header("Ejercicio 2: Procesamiento del Dataset 'Student Performance'")
     
     st.markdown("""
     ### Objetivo
@@ -45,7 +45,7 @@ def main():
     st.dataframe(df.head())
     
     # Exploración inicial
-    st.subheader("2️⃣ Exploración Inicial")
+    st.subheader("Exploración Inicial")
     
     col1, col2 = st.columns(2)
     
@@ -89,7 +89,7 @@ def main():
             st.dataframe(df[col].value_counts())
     
     # Limpieza de datos
-    st.subheader("3️⃣ Limpieza de Datos")
+    st.subheader("2️⃣ Limpieza de Datos")
     
     df_clean = df.copy()
     
@@ -145,7 +145,7 @@ def main():
             st.pyplot(fig)
     
     # Codificación de variables categóricas (One Hot Encoding)
-    st.subheader("4️⃣ Codificación de Variables Categóricas (One Hot Encoding)")
+    st.subheader("3️⃣ Codificación de Variables Categóricas (One Hot Encoding)")
     
     df_encoded = df_clean.copy()
     
@@ -164,7 +164,7 @@ def main():
     st.dataframe(df_encoded.head())
     
     # Normalización de variables numéricas
-    st.subheader("5️⃣ Normalización de Variables Numéricas")
+    st.subheader("4️⃣ Normalización de Variables Numéricas")
     
     # Identificar columnas numéricas a normalizar (excluyendo G3 que es el target)
     numeric_cols_to_normalize = []
@@ -202,7 +202,7 @@ def main():
         st.info("ℹ️ No se encontraron variables numéricas para normalizar")
     
     # Separar X y y
-    st.subheader("6️⃣ Separación de Características (X) y Variable Objetivo (y)")
+    st.subheader(" 5️⃣ Separación de Características (X) y Variable Objetivo (y)")
     
     if 'G3' in df_final.columns:
         target_col = 'G3'
@@ -218,7 +218,7 @@ def main():
     st.write(f"**y (objetivo):** {y.shape}")
     
     # División en entrenamiento y prueba
-    st.subheader("7️⃣ División en Conjuntos de Entrenamiento y Prueba")
+    st.subheader("6️⃣ División en Conjuntos de Entrenamiento y Prueba")
     
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42

@@ -8,7 +8,7 @@ from io import StringIO
 import os
 
 def main():
-    st.header("🚢 Ejercicio 1: Análisis del Dataset 'Titanic'")
+    st.header(" Ejercicio 1: Análisis del Dataset 'Titanic'")
     
     st.markdown("""
     ### Objetivo

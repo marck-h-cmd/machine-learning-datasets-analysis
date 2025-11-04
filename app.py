@@ -33,13 +33,13 @@ st.sidebar.title("📚 Secciones")
 st.sidebar.markdown("---")
 
 # Botones de navegación en el sidebar
-if st.sidebar.button("🚢 Ejercicio 1: Titanic", use_container_width=True, type="primary"):
+if st.sidebar.button("Ejercicio 1: Titanic", use_container_width=True, type="primary"):
     st.session_state.section = "ejer1"
 
-if st.sidebar.button("📚 Ejercicio 2: Student Performance", use_container_width=True):
+if st.sidebar.button("Ejercicio 2: Student Performance", use_container_width=True):
     st.session_state.section = "ejer2"
 
-if st.sidebar.button("🌸 Ejercicio 3: Iris", use_container_width=True):
+if st.sidebar.button("Ejercicio 3: Iris", use_container_width=True):
     st.session_state.section = "ejer3"
 
 # Inicializar sección por defecto

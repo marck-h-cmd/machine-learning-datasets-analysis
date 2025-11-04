@@ -9,7 +9,7 @@ import seaborn as sns
 from io import StringIO
 
 def main():
-    st.header("🌸 Ejercicio 3: Dataset 'Iris'")
+    st.header("Ejercicio 3: Dataset 'Iris'")
     
     st.markdown("""
     ### Objetivo
