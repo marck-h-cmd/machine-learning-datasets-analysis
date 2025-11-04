@@ -156,10 +156,11 @@ def main():
         plot_df_vis = X_scaled.copy()
         plot_df_vis['target_name'] = df['target_name'].values
         
-        fig2 = plt.figure(figsize=(14, 10))
-        sns.pairplot(plot_df_vis, hue='target_name', diag_kind='hist', palette=['red', 'blue', 'green'])
-        plt.suptitle('Matriz de Dispersión - Todas las Características', y=1.02, fontsize=16)
-        st.pyplot(fig2)
+        # sns.pairplot crea su propia figura, así que no necesitamos crear una antes
+        pair_grid = sns.pairplot(plot_df_vis, hue='target_name', diag_kind='hist', palette=['red', 'blue', 'green'], height=2.5)
+        pair_grid.fig.suptitle('Matriz de Dispersión - Todas las Características', y=1.02, fontsize=16)
+        plt.tight_layout()
+        st.pyplot(pair_grid.fig)
     
     # Estadísticas descriptivas del dataset estandarizado
     st.subheader("📊 Salida Esperada")
