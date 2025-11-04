@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 from io import StringIO
+import os
 
 def main():
     st.header("🚢 Ejercicio 1: Análisis del Dataset 'Titanic'")
@@ -17,21 +18,21 @@ def main():
     # Cargar dataset
     st.subheader("1️⃣ Carga del Dataset")
     
-    # Intentar cargar desde diferentes fuentes
+    # Cargar desde archivo local
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(os.path.dirname(current_dir), 'data')
+    titanic_file = os.path.join(data_dir, 'Titanic-Dataset.csv')
+    
     try:
-        # Primero intentar desde seaborn
-        df = sns.load_dataset('titanic')
-        st.success("✅ Dataset cargado desde Seaborn")
-    except:
-        # Si no funciona, intentar cargar desde archivo
-        uploaded_file = st.file_uploader("Cargar archivo titanic.csv", type=['csv'])
-        if uploaded_file is not None:
-            df = pd.read_csv(uploaded_file)
-            st.success("✅ Dataset cargado desde archivo")
-        else:
-            st.warning("⚠️ Por favor, carga el archivo titanic.csv o asegúrate de tener seaborn instalado")
-            st.info("💡 El dataset de Titanic está disponible en Kaggle o puede cargarse usando `sns.load_dataset('titanic')`")
-            return
+        df = pd.read_csv(titanic_file)
+        st.success("✅ Dataset cargado exitosamente")
+    except FileNotFoundError:
+        st.error(f"❌ Error: No se encontró el archivo {titanic_file}")
+        st.info("💡 Asegúrate de que el archivo Titanic-Dataset.csv esté en la carpeta data/")
+        return
+    except Exception as e:
+        st.error(f"❌ Error al cargar el archivo: {str(e)}")
+        return
     
     # Mostrar información inicial
     col1, col2 = st.columns(2)

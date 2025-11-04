@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 def main():
     st.header("📚 Ejercicio 2: Procesamiento del Dataset 'Student Performance'")
@@ -17,14 +18,20 @@ def main():
     # Cargar dataset
     st.subheader("1️⃣ Carga del Dataset")
     
-    uploaded_file = st.file_uploader("Cargar archivo student-mat.csv", type=['csv'])
+    # Cargar desde archivo local
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(os.path.dirname(current_dir), 'data')
+    student_file = os.path.join(data_dir, 'student-mat.csv')
     
-    if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file, sep=';')  # El dataset de student performance usa ; como separador
+    try:
+        df = pd.read_csv(student_file, sep=';')  # El dataset de student performance usa ; como separador
         st.success("✅ Dataset cargado exitosamente")
-    else:
-        st.warning("⚠️ Por favor, carga el archivo student-mat.csv")
-        st.info("💡 El dataset 'Student Alcohol Consumption' está disponible en Kaggle")
+    except FileNotFoundError:
+        st.error(f"❌ Error: No se encontró el archivo {student_file}")
+        st.info("💡 Asegúrate de que el archivo student-mat.csv esté en la carpeta data/")
+        return
+    except Exception as e:
+        st.error(f"❌ Error al cargar el archivo: {str(e)}")
         return
     
     # Mostrar información inicial
